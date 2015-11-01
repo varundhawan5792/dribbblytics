@@ -8110,13 +8110,24 @@ footer .footer-brand {
   top: 2px;
 }
 
-.dots .dot {
+.dots li {
   list-style: none;
+  width: 61px;
+  display: inline-block;
+  margin: 10px;
+}
+.dots .dot {
   border-radius: 50%;
   width: 61px;
   height: 61px;
-  display: inline-block;
-  margin: 10px;
+}
+.dots .score {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4C4C4C;
+  text-align: center;
+  padding-left: 8px;
+  margin: 10px auto;
 }
 
 .bricks {

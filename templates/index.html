@@ -20,9 +20,12 @@
 	</div>
 	<div class="results" ng-if="!loading">
 		<div class="row">
-			<div class="column small-10 medium-6 centered">
+			<div class="column small-10 medium-8 centered">
 				<ul class="dots text-center">
-					<li class="dot" ng-repeat="color in cluster" style="background: {{'{{color.color}}'}};" data-count="{{'{{color.count}}'}}"></li>
+					<li ng-repeat="color in cluster" data-count="{{'{{color.count}}'}}">
+						<div class="dot" style="background: {{'{{color.color}}'}};"></div>
+						<div class="score">{{'{{color.percentage}}%'}}</div>
+					</li>
 				</ul>
 			</div>
 		</div>

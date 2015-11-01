@@ -13,7 +13,7 @@ logger = get_task_logger(__name__)
 
 @celery.task(name="tasks.request", default_retry_delay=100, max_retries=4)
 def request(url):
-    time.sleep(random.uniform(0, 2))
+    time.sleep(random.uniform(1, 4))
     d = dribbble_util.Dribbble()
     palette = d.shotPalette(url)
     return palette

@@ -48,7 +48,15 @@ app.factory('Request', function ($http) {
 				$scope.loading = false;
 				$scope.results = data.results;
 				$scope.palette = data.palette;
-				$scope.cluster = data.cluster.sort(function(a, b){return a.count < b.count});
+				var totalColors = $scope.palette.length;
+				$scope.cluster = data.cluster
+									 .sort(function(a, b){return a.count < b.count})
+									 .map(function(a){
+									 	var percentage = (a.count / totalColors) * 100
+									 	a.percentage = Math.round( percentage * 10 ) / 10;
+									 	return a;
+									 });
+
 			})
 		}
 })

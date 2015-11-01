@@ -193,13 +193,24 @@ footer{
 }
 
 .dots{
-	.dot{
+	li {
 		list-style: none;
+		width: 61px;
+		display: inline-block;
+		margin: 10px;
+	}
+	.dot{
 		border-radius: 50%;
 		width: 61px;
 		height: 61px;
-		display: inline-block;
-		margin: 10px;
+	}
+	.score{
+		font-size: 14px;
+	    font-weight: 600;
+	    color: #4C4C4C;
+	    text-align: center;
+	    padding-left: 8px;
+	    margin: 10px auto;
 	}
 }
 

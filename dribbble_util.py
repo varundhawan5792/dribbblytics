@@ -125,7 +125,7 @@ def extractPalette(results):
 def cluster(colors):
     # Create cluster
     rgb_colors = [util.get_rgb(color) for color in colors]
-    cluster = KMeans(n_clusters=7, random_state=10, tol=0.001)
+    cluster = KMeans(n_clusters=10, random_state=10, tol=0.001)
     cluster.fit_predict(rgb_colors)
     centers = cluster.cluster_centers_
     labels = cluster.labels_.tolist()
