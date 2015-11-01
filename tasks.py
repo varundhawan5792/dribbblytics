@@ -11,12 +11,9 @@ celery.config_from_object('settings')
 logger = get_task_logger(__name__)
 
 
-@celery.task(name="tasks.request", default_retry_delay=100, max_retries=3)
+@celery.task(name="tasks.request", default_retry_delay=100, max_retries=4)
 def request(url):
     time.sleep(random.uniform(0, 2))
     d = dribbble_util.Dribbble()
     palette = d.shotPalette(url)
-    if len(palette) == 0:
-        print "retrying..."
-        request.retry(args=[url], countdown=2)
     return palette

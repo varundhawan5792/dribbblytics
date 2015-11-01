@@ -78,7 +78,7 @@ class Dribbble:
             results.extend(value)
 
             # Stop if no results fetched
-            if len(results) > limit or len(value) == 0:
+            if len(results) >= limit or len(value) == 0:
                 print "Limit reached"
                 return results
 
