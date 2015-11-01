@@ -1,0 +1,9 @@
+requests==2.5.1
+beautifulsoup4==4.4.1
+sklearn
+numpy==1.10.1
+scipy=0.16.1
+flask
+tornado
+celery
+redis

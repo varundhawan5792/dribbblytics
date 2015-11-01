@@ -1,0 +1,63 @@
+$transparent: rgba(0,0,0,0);
+$transparent-color: $transparent;
+$black: #474747;
+$white: #fff;
+$red: #dd5555;
+$blue: #008cdc;
+$text-dark: #434a54;
+$text-light: #656D78;
+$grey: #ddd;
+$total-columns: 12;
+$row-width: none;
+$info-color: $blue;
+$global-radius: 3px;
+
+$font-family-sans-serif: 'Source Sans Pro', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$base-font-size: 16px;
+$rem-base: $base-font-size;
+$body-font-color: $text-dark;
+$header-font-color: $text-dark;
+$h2-font-size: rem-calc(36);
+$h3-font-size: rem-calc(32);
+$h4-font-size: rem-calc(20);
+$anchor-text-decoration: none;
+$anchor-font-color: $blue;
+
+$topbar-height: rem-calc(90);
+
+$topbar-bg-color: $transparent;
+$topbar-bg: $transparent;
+$topbar-link-color-hover: $red;
+$topbar-link-bg: $transparent;
+$topbar-link-bg-hover: $transparent;
+$topbar-link-bg-active: $transparent;
+$topbar-link-bg-active-hover: $transparent;
+$topbar-link-padding: ($topbar-height / 4.5);
+$topbar-link-font-size: 0.95em;
+
+
+// Style the top bar dropdown elements
+$topbar-dropdown-bg: $black;
+$topbar-dropdown-link-bg: $transparent;
+$topbar-dropdown-link-color: $white;
+$topbar-dropdown-link-color-hover: $white;
+$topbar-dropdown-link-bg-hover: $red;
+
+$button-bg-color: $red;
+$button-function-factor: -5%;
+$button-border-width: 1px;
+$button-font-tny: rem-calc(15);
+
+
+$input-border-color: $grey;
+$input-focus-border-color: darken($grey, 5%);
+$input-focus-bg-color: $white;
+$input-font-size: rem-calc(14);
+$input-box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.1);
+
+// We use these to build padding for buttons.
+// $button-med: rem-calc(12);
+// $button-tny: rem-calc(7);
+// $button-sml: rem-calc(9);
+// $button-lrg: rem-calc(16);
+

@@ -1,0 +1,34 @@
+<html>
+<style>
+body{
+	padding: 0;
+	margin: 100px 60px;
+}
+ul li{
+	list-style: none;
+	width: 35px;
+	height: 35px;
+	display: inline-block;
+}
+</style>
+<body>
+<ul id="colors"></ul>
+</body>
+<script>
+	var colors = [
+"#bd3e32",
+"#eeeae4",
+"#3b2f33",
+"#d0c0ab",
+"#5590c3",
+"#e4aa45",
+"#938677"
+];
+	for(var i=0; i<colors.length; i++){
+		var color = document.createElement("li");
+		color.style.background = colors[i];
+		color.appendChild(document.createTextNode(""));
+		document.getElementById("colors").appendChild(color);
+	}
+</script>
+</html>
