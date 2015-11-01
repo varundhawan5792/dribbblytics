@@ -8,7 +8,7 @@
 <body ng-app="app" ng-controller="SearchCtrl">
 	<div class="search">
 		<div class="row">
-			<div class="column small-4 centered text-center">
+			<div class="column small-12 medium-4 centered text-center">
 				<img src="static/images/dribbble-search.png" width="128" style="margin: 20px auto 40px;" />
 				<form name="contact" ng-submit="search.submit()">
 					<div class="column small-12">
@@ -20,14 +20,14 @@
 	</div>
 	<div class="results" ng-if="!loading">
 		<div class="row">
-			<div class="column small-6 centered">
+			<div class="column small-10 medium-6 centered">
 				<ul class="dots text-center">
 					<li class="dot" ng-repeat="color in cluster" style="background: {{'{{color.color}}'}};" data-count="{{'{{color.count}}'}}"></li>
 				</ul>
 			</div>
 		</div>
 		<div class="row">
-			<div class="column small-6 centered">
+			<div class="column small-10 medium-6 centered">
 				<ul class="bricks">
 					<li class="brick" ng-repeat="color in palette track by $index" style="background: {{'{{color}}'}};"></li>
 				</ul>

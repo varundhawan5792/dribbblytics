@@ -4,6 +4,7 @@ sklearn
 numpy==1.10.1
 scipy=0.16.1
 flask
+Flask-Cache
 tornado
 celery
 redis

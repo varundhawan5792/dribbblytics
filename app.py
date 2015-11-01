@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+from werkzeug.contrib.cache import SimpleCache
 import json
 import dribbble_util
 import util
@@ -9,13 +10,17 @@ import settings
 app = Flask(__name__)
 app.config.from_object(settings)
 
+cache = SimpleCache()
+
 WEBSITE = dribbble_util.WEBSITE
+
 
 @app.route('/')
 def main():
     return render_template('index.html')
 
 
+# @cache.cached(timeout=3600, key_prefix='search')
 @app.route('/search', methods=['GET'])
 def search():
     keyword = request.args.get('q')
@@ -30,24 +35,28 @@ def search():
             "palette": [],
             "cluster": []
         })
-    # Fetch Search Results
-    results = dribbble_util.search(keyword, limit)
+    rv = cache.get(keyword + str(limit))
+    if rv is None:
+        # Fetch Search Results
+        results = dribbble_util.search(keyword, limit)
 
-    # Fetch Shots (parallel with celery)
-    jobs = [tasks.request.s(WEBSITE + result["path"]) for  result in results]
-    job = group(jobs)()
-    palette = job.get()
-    chain = itertools.chain(*palette)
-    palette = list(chain)
-    palette.sort(key=util.get_hsv)
+        # Fetch Shots (parallel with celery)
+        jobs = [tasks.request.s(WEBSITE + result["path"]) for  result in results]
+        job = group(jobs)()
+        palette = job.get()
+        chain = itertools.chain(*palette)
+        palette = list(chain)
+        palette.sort(key=util.get_hsv)
 
-    cluster = dribbble_util.cluster(palette)
+        cluster = dribbble_util.cluster(palette)
 
-    return json.dumps({
-        "results": results,
-        "palette": palette,
-        "cluster": cluster
-    })
+        rv = json.dumps({
+            "results": results,
+            "palette": palette,
+            "cluster": cluster
+        })
+        cache.set(keyword + str(limit), rv, timeout=5 * 60)
+    return rv
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
