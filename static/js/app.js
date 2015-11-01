@@ -30,6 +30,7 @@ app.factory('Request', function ($http) {
     }
 })
 .controller('SearchCtrl', function($scope, Request){
+		$loading = false;
 		$scope.search = {
 			keyword: ""
 		}
@@ -37,12 +38,14 @@ app.factory('Request', function ($http) {
 		$scope.palette = [];
 		$scope.cluster = [];
 		$scope.search.submit = function(){
+			$scope.loading = true;
 			Request.get('search', {
 				q: $scope.search.keyword,
 				limit: 20
 			}).then(function(response){
 				var data = response.data;
 				console.log(data);
+				$scope.loading = false;
 				$scope.results = data.results;
 				$scope.palette = data.palette;
 				$scope.cluster = data.cluster.sort(function(a, b){return a.count < b.count});
