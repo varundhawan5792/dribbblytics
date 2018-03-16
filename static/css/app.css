@@ -8110,6 +8110,9 @@ footer .footer-brand {
   top: 2px;
 }
 
+.dots {
+  margin-left: 0;
+}
 .dots li {
   list-style: none;
   width: 61px;
@@ -8128,6 +8131,32 @@ footer .footer-brand {
   text-align: center;
   padding-left: 8px;
   margin: 10px auto;
+}
+
+.gallery-wrapper {
+  padding-top: 20px;
+  margin-top: 20px;
+  background: #F4F4F4;
+  border-top: 1px solid #eee;
+}
+
+.gallery {
+  margin: 0;
+  text-align: center;
+  list-style: none;
+}
+
+.gallery li {
+  list-style: none;
+  display: inline-block;
+  margin: 20px 10px;
+}
+.gallery .image {
+  width: 23%;
+  height: 150px;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  border: 10px solid #fff;
 }
 
 .bricks {

@@ -36,6 +36,14 @@
 				</ul>
 			</div>
 		</div>
+		<div class="row gallery-wrapper" ng-cloak ng-show="images.length">
+			<div class="column small-10 medium-8 centered">
+				<ul class="gallery">
+					<li class="image" ng-repeat="image in images" style="background: url({{'{{image}}'}}) center;">
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<div class="loader text-center ng-hide" ng-show="loading">
 		<img src="static/images/loader.gif" width="400" />

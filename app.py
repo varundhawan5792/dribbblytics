@@ -38,7 +38,7 @@ def search():
     rv = cache.get(keyword + str(limit))
     if rv is None:
         # Fetch Search Results
-        results = dribbble_util.search(keyword, limit)
+        results, images = dribbble_util.search(keyword, limit)
 
         # Fetch Shots (parallel with celery)
         jobs = [tasks.request.s(WEBSITE + result["path"]) for  result in results]
@@ -53,7 +53,8 @@ def search():
         rv = json.dumps({
             "results": results,
             "palette": palette,
-            "cluster": cluster
+            "cluster": cluster,
+            "images": images
         })
         cache.set(keyword + str(limit), rv, timeout=5 * 60)
     return rv

@@ -1,2 +1,4 @@
-sudo apt-get install libblas-dev liblapack-dev libatlas-base-dev gfortran
 sudo pip install -r requirements.txt
+redis-server
+celery -A tasks worker --loglevel=info  
+python main.py

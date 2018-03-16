@@ -41,12 +41,13 @@ app.factory('Request', function ($http) {
 			$scope.loading = true;
 			Request.get('search', {
 				q: $scope.search.keyword,
-				limit: 20
+				limit: 24
 			}).then(function(response){
 				var data = response.data;
 				console.log(data);
 				$scope.loading = false;
 				$scope.results = data.results;
+                $scope.images = data.images;
 				$scope.palette = data.palette;
 				var totalColors = $scope.palette.length;
 				$scope.cluster = data.cluster

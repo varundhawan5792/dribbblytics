@@ -47,6 +47,7 @@ class Dribbble:
 
         api = WEBSITE + '/search'
         results = []
+        image_urls = []
 
         while True:
             params = {
@@ -62,14 +63,21 @@ class Dribbble:
             # No results? STOP
             if response.find("newShots") == -1:
                 print "All pages fetched"
-                return results
+                return results, image_urls
 
             soup = bs(response, 'html.parser')
-            scripts = soup('script')
+            images = soup.find_all('a', {'class': 'dribbble-link'})
+            for image in images:
+                image_urls.append(image.find_all('img')[0]['src'])
 
-            shotJSON = scripts[2].contents[0]
+            # return
+            scripts = soup('script')
+            print ">>"
+            print scripts[3]
+            shotJSON = scripts[3].contents[0]
 
             # Strip down to json string in <script>
+            print shotJSON
             jsonValue = shotJSON.split('if (')[0].split("= ")[1].strip()[:-1]
             jsonValue = util.fixLazyJson(jsonValue)
             value = json.loads(jsonValue)
@@ -80,21 +88,23 @@ class Dribbble:
             # Stop if no results fetched
             if len(results) >= limit or len(value) == 0:
                 print "Limit reached"
-                return results
+                return results, image_urls
 
             else:
                 # Increment Page
                 page += 1
                 time.sleep(2)
 
-        return results
+        print results
+        print image_urls
+        return results, image_urls
 
 
 def search(keyword, limit=50):
     d = Dribbble()
-    results = d.search(keyword, page=1, limit=limit)
+    results, images = d.search(keyword, page=1, limit=limit)
     print "{0} results found".format(len(results))
-    return results
+    return results, images
 
 
 def extractPalette(results):
@@ -125,7 +135,7 @@ def extractPalette(results):
 def cluster(colors):
     # Create cluster
     rgb_colors = [util.get_rgb(color) for color in colors]
-    cluster = KMeans(n_clusters=10, random_state=10, tol=0.001)
+    cluster = KMeans(n_clusters=7, random_state=10, tol=0.001)
     cluster.fit_predict(rgb_colors)
     centers = cluster.cluster_centers_
     labels = cluster.labels_.tolist()
